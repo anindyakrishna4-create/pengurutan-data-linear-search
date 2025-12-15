@@ -1,4 +1,4 @@
-# File: app.py (Aplikasi Streamlit dengan Matplotlib)
+# File: app.py (Revisi Final - Linear Search)
 
 import streamlit as st
 import pandas as pd
@@ -39,20 +39,26 @@ except ValueError:
     st.error("Pastikan semua input data dan target adalah angka (integer) yang dipisahkan oleh koma.")
     st.stop()
 
-# --- Penjelasan Pewarnaan ---
+# ----------------------------------------------------
+# --- BAGIAN REVISI: Hapus Kode Heksadesimal ---
+# ----------------------------------------------------
 st.markdown("""
 #### Pewarnaan Bar:
-* **Kuning (#F1C232):** Indeks yang **sedang dicek** pada langkah ini.
-* **Hijau (#6AA84F):** Indeks di mana nilai **ditemukan**.
-* **Merah (#CC0000):** Indeks yang **sudah dicek** dan bukan target.
-* **Biru (#4A86E8):** Indeks yang **belum dicek**.
+* **Kuning:** Indeks yang **sedang dicek** pada langkah ini.
+* **Hijau:** Indeks di mana nilai **ditemukan**.
+* **Merah:** Indeks yang **sudah dicek** dan bukan target.
+* **Biru:** Indeks yang **belum dicek**.
 """)
+# ----------------------------------------------------
 
 st.write(f"**Array Awal:** {initial_data}")
 st.write(f"**Nilai Target:** **{target_value}**")
 
-# --- Fungsi Plot Matplotlib ---
+# --- Fungsi Plot Matplotlib (TIDAK BERUBAH) ---
 def plot_array(arr, target, current_index, found_index, max_val, status):
+    # Menggunakan kode warna heksadesimal internal untuk Matplotlib
+    # #F1C232 (Kuning), #6AA84F (Hijau), #CC0000 (Merah), #4A86E8 (Biru)
+    
     fig, ax = plt.subplots(figsize=(10, 4))
     n = len(arr)
     x_pos = np.arange(n)
@@ -90,9 +96,10 @@ def plot_array(arr, target, current_index, found_index, max_val, status):
     return fig
 
 
-# --- Visualisasi Utama ---
+# --- Visualisasi Utama (TIDAK BERUBAH) ---
 if st.button("Mulai Simulasi Linear Search"):
     
+    # Asumsi linear_search.py sudah benar dan bebas bug 'Selesai'
     found_index, history = linear_search(list(data_list), target_value)
     max_data_value = max(initial_data) if initial_data else 10 
     
@@ -150,7 +157,7 @@ if st.button("Mulai Simulasi Linear Search"):
         # Jeda untuk simulasi
         time.sleep(speed)
 
-    # --- Hasil Akhir Final (Tampil Setelah Loop Selesai) ---
+    # --- Hasil Akhir Final ---
     st.markdown("---")
     if final_found_index != -1:
         st.balloons()
